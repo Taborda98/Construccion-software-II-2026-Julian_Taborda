@@ -1,0 +1,28 @@
+package com.bank.domain.entities;
+
+import com.bank.domain.enums.TransferStatus;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+/**
+ * Representa una transferencia de dinero entre cuentas.
+ */
+public class Transfer {
+
+    private Long id;
+
+    private String originAccount;
+    private String destinationAccount;
+
+    private BigDecimal amount;
+
+    private LocalDateTime creationDate;
+    private LocalDateTime approvalDate;
+
+    private TransferStatus status;
+
+    private Long createdByUser;
+    private Long approvedByUser;
+
+}
