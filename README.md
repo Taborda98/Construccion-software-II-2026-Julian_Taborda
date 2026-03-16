@@ -1,18 +1,49 @@
-## Getting Started
+# Bank DDD Model
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Información del Proyecto
 
-## Folder Structure
+Este proyecto fue realizado por **Julián Adolfo Taborda Marin** para la materia **Construcción de Software II**.
 
-The workspace contains two folders by default, where:
+**Horario de la materia:**
+Lunes y Miércoles de **20:00 a 22:00 horas**.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Descripción
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+El proyecto consiste en la implementación de un **modelo de dominio para un sistema bancario**, siguiendo principios básicos de **Domain Driven Design (DDD)**.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Se incluyen entidades y enumeraciones que representan los componentes principales de un sistema bancario, como:
 
-## Dependency Management
+* Usuarios
+* Clientes
+* Cuentas bancarias
+* Préstamos
+* Transferencias
+* Productos bancarios
+* Registro de operaciones
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Estructura del Proyecto
+
+El proyecto está organizado siguiendo una estructura de dominio:
+
+```
+src/main/java/com/bank
+│
+└── domain
+    ├── entities
+    └── enums
+```
+
+### Entities
+
+Contienen las clases principales del dominio del sistema bancario.
+
+### Enums
+
+Contienen los tipos y estados utilizados dentro del dominio.
+
+## Tecnologías utilizadas
+
+* Java
+* Visual Studio Code
+* Git
+* GitHub
