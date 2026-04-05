@@ -1,49 +1,208 @@
-# Bank DDD Model
+# 🏦 Banking Management System (DDD)
 
-## Información del Proyecto
+## 📌 Project Information
 
-Este proyecto fue realizado por **Julián Adolfo Taborda Marin** para la materia **Construcción de Software II**.
+**Student:** Julián Adolfo Taborda Marin
+**Course:** Software Construction II
+**Schedule:** Monday & Wednesday (20:00 - 22:00)
 
-**Horario de la materia:**
-Lunes y Miércoles de **20:00 a 22:00 horas**.
+---
 
-## Descripción
+## 📖 Project Description
 
-El proyecto consiste en la implementación de un **modelo de dominio para un sistema bancario**, siguiendo principios básicos de **Domain Driven Design (DDD)**.
+This project consists of the development of a **Bank Information Management System**, designed using **Domain-Driven Design (DDD)** principles.
 
-Se incluyen entidades y enumeraciones que representan los componentes principales de un sistema bancario, como:
+The system manages:
 
-* Usuarios
-* Clientes
-* Cuentas bancarias
-* Préstamos
-* Transferencias
-* Productos bancarios
-* Registro de operaciones
+* Clients (Natural and Company)
+* Bank Accounts
+* Loans
+* Transfers
+* Operation Logs (Audit)
 
-## Estructura del Proyecto
+It simulates a **core banking system**, enforcing business rules, validation logic, and role-based access control.
 
-El proyecto está organizado siguiendo una estructura de dominio:
+---
+
+## 🧠 Architecture: Domain-Driven Design (DDD)
+
+The project follows a layered architecture:
 
 ```
-src/main/java/com/bank
+com.bank
 │
-└── domain
-    ├── entities
-    └── enums
+├── domain
+│   ├── entities
+│   ├── enums
+│
+├── application
+│   ├── ports
+│   │   ├── input
+│   │   └── output
+│   ├── services
+│
+├── infrastructure (future implementation)
+│
+└── Main.java
 ```
 
-### Entities
+---
 
-Contienen las clases principales del dominio del sistema bancario.
+## 🧩 Key Design Decisions
 
-### Enums
+### ✔ Separation of User vs Client
 
-Contienen los tipos y estados utilizados dentro del dominio.
+* **User** → Handles authentication and roles (system access)
+* **Client** → Represents the owner of bank products
 
-## Tecnologías utilizadas
+This separation avoids mixing responsibilities and follows DDD best practices.
 
-* Java
-* Visual Studio Code
-* Git
-* GitHub
+Hierarchy:
+
+```
+Client (abstract)
+├── NaturalClient
+└── CompanyClient
+
+User → references Client (optional)
+```
+
+---
+
+### ✔ Operation Log (Audit System)
+
+* Uses flexible structure with `Map<String, Object>`
+* Stores all relevant operations
+* Designed for NoSQL-like behavior
+
+Improvements:
+
+* `OperationType` implemented as ENUM
+* `UserRole` implemented as ENUM
+
+---
+
+### ✔ Business Rules Inside Entities
+
+Entities now contain real business logic:
+
+Examples:
+
+* BankAccount:
+
+  * Prevent negative balance
+  * Validate withdrawals
+* NaturalClient:
+
+  * Must be over 18 years old
+* Loan:
+
+  * Validates approval amount
+
+This ensures consistency and domain integrity.
+
+---
+
+## ⚙️ Features Implemented
+
+* Account creation
+* Money transfers
+* Loan requests and approvals
+* Balance validation
+* Role-based operation restrictions
+* Operation logging (audit trail)
+
+---
+
+## 🔐 Business Rules
+
+* Unique identification for clients
+* No operations on blocked accounts
+* Transfers require sufficient balance
+* Loan approval only by authorized roles
+* High-value transfers require approval
+* Transfer expiration after time limit
+
+---
+
+## 🗂️ Technologies Used
+
+* Java (JDK 17+ recommended)
+* VS Code
+* Git & GitHub
+
+---
+
+## 🌿 Branching Strategy
+
+The project follows a structured Git workflow:
+
+* `main` → stable version
+* `develop` → integration branch
+* `feature/*` → new features
+
+Example:
+
+```
+feature/transfer-service
+feature/loan-approval
+```
+
+---
+
+## 📝 Commit Convention
+
+Commits follow a clear and consistent format:
+
+* `ADD:` New feature
+* `CHG:` Change or improvement
+* `FIX:` Bug fix
+
+Examples:
+
+```
+ADD: Transfer service implementation
+CHG: Improved validation in BankAccount
+FIX: Null pointer in User creation
+```
+
+---
+
+## 🚀 How to Run
+
+1. Open the project in VS Code
+2. Ensure Java Extension Pack is installed
+3. Run `Main.java`
+
+---
+
+## 🧪 Current Status
+
+✔ Domain model completed
+✔ DDD architecture applied
+✔ Business rules partially implemented
+✔ In-memory simulation working
+
+---
+
+## 🔮 Future Improvements
+
+* Database integration (SQL + NoSQL)
+* REST API (Spring Boot)
+* Authentication system (JWT)
+* Unit testing (JUnit)
+* Role-based security enforcement
+
+---
+
+## 🏷️ Release Version
+
+**v1.0 - Final Project Delivery**
+
+---
+
+## 📌 Notes
+
+This project prioritizes **clean architecture, domain modeling, and business logic implementation**, rather than UI or persistence layers.
+
+---
