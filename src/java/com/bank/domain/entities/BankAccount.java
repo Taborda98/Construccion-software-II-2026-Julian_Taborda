@@ -1,9 +1,8 @@
-package com.bank.domain.entities;
+package java.com.bank.domain.entities;
 
-import com.bank.domain.enums.AccountStatus;
-import com.bank.domain.enums.AccountType;
-import com.bank.domain.enums.Currency;
-
+import java.com.bank.domain.enums.AccountStatus;
+import java.com.bank.domain.enums.AccountType;
+import java.com.bank.domain.enums.Currency;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -22,5 +21,20 @@ public class BankAccount {
     private AccountStatus status;
 
     private LocalDate openDate;
+
+    public BigDecimal getBalance() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getBalance'");
+    }
+
+    public void setBalance(BigDecimal subtract) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setBalance'");
+    }
+
+    public String getAccountNumber() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAccountNumber'");
+    }
 
 }

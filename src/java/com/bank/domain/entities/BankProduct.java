@@ -1,4 +1,4 @@
-package com.bank.domain.entities;
+package java.com.bank.domain.entities;
 
 /**
  * Representa un producto bancario disponible en el catálogo.

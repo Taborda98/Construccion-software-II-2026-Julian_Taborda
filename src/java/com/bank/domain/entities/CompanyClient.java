@@ -1,4 +1,4 @@
-package com.bank.domain.entities;
+package java.com.bank.domain.entities;
 
 /**
  * Representa un cliente empresarial del banco.

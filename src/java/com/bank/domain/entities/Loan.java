@@ -1,8 +1,7 @@
-package com.bank.domain.entities;
+package java.com.bank.domain.entities;
 
-import com.bank.domain.enums.LoanStatus;
-import com.bank.domain.enums.LoanType;
-
+import java.com.bank.domain.enums.LoanStatus;
+import java.com.bank.domain.enums.LoanType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

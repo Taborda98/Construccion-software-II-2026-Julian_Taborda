@@ -1,4 +1,4 @@
-package com.bank.domain.entities;
+package java.com.bank.domain.entities;
 
 import java.time.LocalDateTime;
 import java.util.Map;

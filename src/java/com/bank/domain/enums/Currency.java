@@ -1,4 +1,4 @@
-package com.bank.domain.enums;
+package java.com.bank.domain.enums;
 
 /**
  * Monedas soportadas por el sistema bancario.

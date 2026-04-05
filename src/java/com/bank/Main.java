@@ -1,4 +1,4 @@
-package com.bank;
+package java.com.bank;
 
 /**
  * Clase principal del sistema bancario.
