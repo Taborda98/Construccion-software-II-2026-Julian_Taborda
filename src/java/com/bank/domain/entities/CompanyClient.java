@@ -1,29 +1,18 @@
 package java.com.bank.domain.entities;
 
 /**
- * Representa un cliente empresarial del banco.
+ * Represents a company client.
  */
-public class CompanyClient {
+public class CompanyClient extends Client {
 
-    private String companyName;
-    private String nit;
-    private String email;
-    private String phone;
-    private String address;
+    private String businessName;
+    private String legalRepresentativeId;
 
-    private NaturalClient legalRepresentative;
+    public CompanyClient(String clientId, String businessName, String email,
+                         String phone, String address, String legalRepresentativeId) {
+        super(clientId, email, phone, address);
 
-    public CompanyClient(String companyName, String nit,
-                         String email, String phone,
-                         String address,
-                         NaturalClient legalRepresentative) {
-
-        this.companyName = companyName;
-        this.nit = nit;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.legalRepresentative = legalRepresentative;
+        this.businessName = businessName;
+        this.legalRepresentativeId = legalRepresentativeId;
     }
-
 }

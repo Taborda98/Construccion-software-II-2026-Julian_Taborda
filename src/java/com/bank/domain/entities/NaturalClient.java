@@ -1,17 +1,24 @@
 package java.com.bank.domain.entities;
 
+import java.time.LocalDate;
+
 /**
- * Representa un cliente persona natural del banco.
- * Hereda información del usuario del sistema.
+ * Represents an individual client.
  */
-public class NaturalClient extends User {
+public class NaturalClient extends Client {
 
-    public NaturalClient(Long id, String fullName, String identification,
-                         String email, String phone,
-                         java.time.LocalDate birthDate, String address,
-                         java.com.bank.domain.enums.UserRole role,
-                         java.com.bank.domain.enums.UserStatus status) {
+    private String fullName;
+    private LocalDate birthDate;
 
-        super(id, fullName, identification, email, phone, birthDate, address, role, status);
+    public NaturalClient(String clientId, String fullName, String email,
+                         String phone, String address, LocalDate birthDate) {
+        super(clientId, email, phone, address);
+
+        if (birthDate == null || birthDate.plusYears(18).isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Client must be over 18 years old");
+        }
+
+        this.fullName = fullName;
+        this.birthDate = birthDate;
     }
 }

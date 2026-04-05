@@ -1,40 +1,45 @@
 package java.com.bank.domain.entities;
 
-import java.com.bank.domain.enums.AccountStatus;
-import java.com.bank.domain.enums.AccountType;
-import java.com.bank.domain.enums.Currency;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 /**
- * Representa una cuenta bancaria del cliente.
+ * Represents a bank account with business rules.
  */
 public class BankAccount {
 
     private String accountNumber;
-    private AccountType accountType;
-    private String ownerId;
-
     private BigDecimal balance;
 
-    private Currency currency;
-    private AccountStatus status;
+    public BankAccount(String accountNumber, BigDecimal balance) {
 
-    private LocalDate openDate;
+        if (balance.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative");
+        }
+
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public void deposit(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Invalid amount");
+        }
+        balance = balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) {
+        if (amount.compareTo(balance) > 0) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+        balance = balance.subtract(amount);
+    }
 
     public BigDecimal getBalance() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBalance'");
+        return balance;
     }
 
     public void setBalance(BigDecimal subtract) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setBalance'");
     }
-
-    public String getAccountNumber() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAccountNumber'");
-    }
-
 }
