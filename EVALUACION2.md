@@ -1,56 +1,54 @@
-# EVALUACION 2 - Construccion-software-II-2026-Julian_Taborda
+﻿# EVALUACION 2 - Construccion-software-II-2026-Julian_Taborda
 
 ## Informacion general
 - Estudiante(s): Julian Adolfo Taborda Marin
-- Rama evaluada: N/A — no se encontraron ramas remotas develop ni main. Evaluado sobre codigo local disponible.
-- Commit evaluado: N/A (sin rama remota verificable)
+- Rama evaluada: master
+- Commit evaluado: 9b0b11475518402b77569f147bac3a36cc1dc054
 - Fecha: 2026-04-11
 
 ## Tabla de calificacion
 
 | Criterio | Peso | Puntaje (1-5) | Aporte |
 |---|---|---|---|
-| 1. Modelado de dominio | 20% | 4 | 0.80 |
-| 2. Modelado de puertos | 20% | 1 | 0.20 |
-| 3. Modelado de servicios de dominio | 20% | 1 | 0.20 |
+| 1. Modelado de dominio | 20% | 3 | 0.60 |
+| 2. Modelado de puertos | 20% | 3 | 0.60 |
+| 3. Modelado de servicios de dominio | 20% | 2 | 0.40 |
 | 4. Enums y estados | 10% | 5 | 0.50 |
-| 5. Reglas de negocio criticas | 10% | 2 | 0.20 |
-| 6. Bitacora y trazabilidad | 5% | 4 | 0.20 |
-| 7. Estructura interna de dominio | 10% | 4 | 0.40 |
-| 8. Calidad tecnica base en domain | 5% | 4 | 0.20 |
-| **SUBTOTAL** | | | **2.70** |
+| 5. Reglas de negocio criticas | 10% | 3 | 0.30 |
+| 6. Bitacora y trazabilidad | 5% | 3 | 0.15 |
+| 7. Estructura interna de dominio | 10% | 3 | 0.30 |
+| 8. Calidad tecnica base en domain | 5% | 2 | 0.10 |
+| **SUBTOTAL** | | | **2.95** |
 
 ## Penalizaciones
-- Ninguna detectada.
+- **Nomenclatura mixta menor (-5%):** detalles puntuales de consistencia tecnica.
+
+Calculo: 2.95 x 0.95 = **2.80**
 
 ## Bonus
-- Ninguno aplicable (sin puertos ni servicios).
+- +0.1 por trazabilidad con `OperationLog` y cobertura de eventos de operacion.
+
+Total bonus: +0.1
 
 ## Nota final
-**2.7 / 5.0**
-
-> Nota: La evaluacion se realizo sobre el codigo local disponible. No se encontraron ramas `develop` ni `main` en el repositorio remoto. Se desconoce si el codigo enviado corresponde al estado final del estudiante.
+**3.0 / 5.0**
 
 ---
 
 ## Hallazgos
 
 ### Positivos
-- Estructura DDD correcta con carpetas `entities/` y `enums/` bien separadas.
-- 8 entidades bien modeladas: `User` (abstracto), `NaturalClient`, `CompanyClient`, `BankAccount`, `Loan`, `Transfer`, `BankProduct`, `OperationLog`.
-- 8 enums correctamente definidos con nombres en ingles: `AccountStatus`, `AccountType`, `Currency`, `LoanStatus` (incluye UNDER_REVIEW, APPROVED, REJECTED, DISBURSED), `LoanType`, `TransferStatus`, `UserRole`, `UserStatus`.
-- `OperationLog` con `Map<String, Object> details` para trazabilidad flexible.
-- Sin acoplamiento a Spring/JPA en la capa de dominio.
-- `Transfer` incluye `createdByUser`, `approvedByUser`, `approvalDate` para rastrear aprobacion.
-- `CompanyClient` incluye `legalRepresentative: NaturalClient`.
+- Buen modelo base con `User`, `BankAccount`, `Loan`, `Client` (abstract), `Transfer`, `OperationLog`.
+- **9 enums** completos y alineados al dominio (`UserStatus`, `UserRole`, `AccountStatus`, `AccountType`, `LoanStatus`, `LoanType`, `TransferStatus`, `OperationType`, `Currency`).
+- Estructura de puertos en `application/ports` con interfaces de entrada y salida.
+- `OperationLog` aporta trazabilidad del proceso de negocio.
 
 ### Negativos
-- **No existen puertos (interfaces de salida del dominio).** Sin contratos de persistencia.
-- **No existen servicios de dominio.** Solo entidades y enums, sin implementacion de casos de uso.
-- Las reglas de negocio (validacion de estados, aprobacion por rol, monto > 0) no estan implementadas en ningun servicio.
-- No se pueden evaluar transiciones de estado ni enforcement de reglas al no haber servicios.
+- Implementacion de servicios aun parcial para todos los casos de uso.
+- Presencia de `double` en partes del modelo/servicios financieros.
+- Falta mayor profundidad de reglas de aprobacion/rechazo por rol en dominio puro.
 
 ## Recomendaciones
-1. Crear puertos por agregado: `ClientePort`, `CuentaBancariaPort`, `PrestamoPort`, `TransferenciaPort`, `OperationLogPort`.
-2. Implementar servicios de dominio por caso de uso: `CreateLoanRequestService`, `ApproveLoanService`, `CreateTransferService`, `ApproveTransferService`, etc.
-3. Establecer ramas `main` y `develop` en el repositorio remoto y hacer push del codigo.
+1. Completar servicios por cada caso de uso del enunciado.
+2. Sustituir `double` por `BigDecimal` en montos y tasas.
+3. Consolidar invariantes de estado dentro de servicios de dominio.
